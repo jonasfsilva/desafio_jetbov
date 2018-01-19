@@ -43,3 +43,5 @@ static/
 nginx/
 .idea/
 .vscode/ 
+generate_api/
+db.sqlite3
