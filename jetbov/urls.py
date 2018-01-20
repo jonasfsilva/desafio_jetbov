@@ -14,8 +14,16 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
+from django.conf.urls import include
 from django.contrib import admin
+from jetbov.routers import router
+from rest_framework_swagger.views import get_swagger_view
+
+schema_view = get_swagger_view(title='FoiTop API')
+
 
 urlpatterns = [
+    url(r'^api/', include(router.urls, namespace='api')),
+    url(r'^api/docs/', schema_view, name='schema_view'),
     url(r'^admin/', admin.site.urls),
 ]
