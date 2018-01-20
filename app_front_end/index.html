@@ -1,0 +1,52 @@
+<html>
+<!-- <html data-ng-app="jetBov" data-ng-controller="jetBovCtrl as jetctrl"> -->
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>JetBov</title>
+
+        <!-- CSS -->
+        <link href="node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+
+    </head>
+    <body ng-app="jetBov" ng-controller="jetbovController as jetbovCtrl">
+
+        <h1>JetBov</h1>
+        <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Brinco</th>
+                        <th scope="col">Peso</th>
+                        <th scope="col">Especificacos</th>
+                        <th scope="col">Data Pesagem</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="pesagem in jetbovCtrl.pesagens">
+                        <th scope="row">{{pesagem.brinco}}</th>
+                        <!-- <td>pesagem.peso</td>
+                        <td>pesagem.especificacoes</td>
+                        <td>10/12/2017</td> -->
+                    </tr>
+                </tbody>
+        </table>
+            
+        <!-- <data ui-view ng-controller="jetbovController as jetbovCtrl"></data> -->
+
+        <!-- Core Modules -->
+        <script src="node_modules/jquery/dist/jquery.min.js"></script>
+        <script src="node_modules/angular/angular.min.js"></script>
+        <script src="node_modules/angular-resource/angular-resource.min.js"></script>
+        <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+        
+        <!-- Aplication Modules -->
+        <script src="js/app.js"></script>
+        <script src="js/services/gado.js"></script>
+        <script src="js/controllers/jetbov.js"></script>
+
+    </body>
+
+
+</html>
