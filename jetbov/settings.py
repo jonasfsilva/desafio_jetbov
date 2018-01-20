@@ -39,7 +39,31 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'jetbov',
     'fazenda',
+    'rest_framework',
+    'django_filters',
+    'generate_api',
+    'rest_framework_swagger',
 ]
+
+PROJECT_DIR = os.path.abspath(os.path.dirname(__file__))
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny'
+    ],
+    'DEFAULT_FILTER_BACKENDS': (
+        'rest_framework_filters.backends.DjangoFilterBackend',
+
+    ),
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.AdminRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer'
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 100,
+}
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -120,3 +144,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+f = os.path.join(PROJECT_DIR, "local_settings.py")
+if os.path.exists(f):
+    exec(open(f, "rb").read())
