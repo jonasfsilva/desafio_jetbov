@@ -1,5 +1,5 @@
 """
-    Modificado em 19/01/2018 22:19:16
+    Modificado em 20/01/2018 20:45:29
 """
 from rest_framework import viewsets
 from rest_framework.filters import OrderingFilter
@@ -16,9 +16,11 @@ from rest_framework.generics import get_object_or_404
 from fazenda.serializers import FazendaSerializer
 from fazenda.serializers import GestorFazendaSerializer
 from fazenda.serializers import GadoSerializer
+from fazenda.serializers import PesagemSerializer
 from fazenda.models import Fazenda
 from fazenda.models import GestorFazenda
 from fazenda.models import Gado
+from fazenda.models import Pesagem
 from django.contrib.auth.models import User
 # from jetbov.views_user import UserFilter
 
@@ -32,10 +34,11 @@ class FazendaFilter(filters.FilterSet):
             'cnpj': '__all__',
             'telefone': '__all__',
             'endereco': '__all__',
+            'access_token': '__all__',
         }
 
 
-class FazendaViewSet(viewsets.ModelViewSet):
+class FazendaViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Fazenda.objects.all()
     serializer_class = FazendaSerializer
     filter_class = FazendaFilter
@@ -51,34 +54,8 @@ class FazendaViewSet(viewsets.ModelViewSet):
         'cnpj',
         'telefone',
         'endereco',
+        # 'access_token',
     )
-
-    def list(self, request, *args, **kwargs):
-        """Retorna todas os(as) Fazenda"""
-        self.serializer_class = FazendaSerializer
-        return super(FazendaViewSet, self).list(request, *args, **kwargs)
-
-    def create(self, request, *args, **kwargs):
-        """Cadastro de novo(a) Fazenda"""
-        return super(FazendaViewSet, self).create(request, *args, **kwargs)
-
-    def retrieve(self, request, *args, **kwargs):
-        """Retorna um(a) Fazenda pelo id"""
-        self.serializer_class = FazendaSerializer
-        return super(FazendaViewSet, self).retrieve(request, *args, **kwargs)
-
-    def update(self, request, *args, **kwargs):
-        """Atualiza um(a) Fazenda pelo id"""
-        return super(FazendaViewSet, self).update(request, *args, **kwargs)
-
-    def partial_update(self, request, *args, **kwargs):
-        """Atualiza alguns campos de um(a) Fazenda pelo id"""
-        return super(FazendaViewSet, self).partial_update(
-            request, *args, **kwargs)
-
-    def destroy(self, request, *args, **kwargs):
-        """Apaga um(a) Fazenda pelo id"""
-        return super(FazendaViewSet, self).destroy(request, *args, **kwargs)
 
 
 class GestorFazendaFilter(filters.FilterSet):
@@ -93,7 +70,7 @@ class GestorFazendaFilter(filters.FilterSet):
         }
 
 
-class GestorFazendaViewSet(viewsets.ModelViewSet):
+class GestorFazendaViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = GestorFazenda.objects.all()
     serializer_class = GestorFazendaSerializer
     filter_class = GestorFazendaFilter
@@ -101,38 +78,7 @@ class GestorFazendaViewSet(viewsets.ModelViewSet):
     ordering_fields = ()
     search_fields = ()
 
-    def list(self, request, *args, **kwargs):
-        """Retorna todas os(as) GestorFazenda"""
-        self.serializer_class = GestorFazendaSerializer
-        return super(GestorFazendaViewSet, self).list(request, *args, **kwargs)
-
-    def create(self, request, *args, **kwargs):
-        """Cadastro de novo(a) GestorFazenda"""
-        return super(GestorFazendaViewSet, self).create(
-            request, *args, **kwargs)
-
-    def retrieve(self, request, *args, **kwargs):
-        """Retorna um(a) GestorFazenda pelo id"""
-        self.serializer_class = GestorFazendaSerializer
-        return super(GestorFazendaViewSet, self).retrieve(
-            request, *args, **kwargs)
-
-    def update(self, request, *args, **kwargs):
-        """Atualiza um(a) GestorFazenda pelo id"""
-        return super(GestorFazendaViewSet, self).update(
-            request, *args, **kwargs)
-
-    def partial_update(self, request, *args, **kwargs):
-        """Atualiza alguns campos de um(a) GestorFazenda pelo id"""
-        return super(GestorFazendaViewSet, self).partial_update(
-            request, *args, **kwargs)
-
-    def destroy(self, request, *args, **kwargs):
-        """Apaga um(a) GestorFazenda pelo id"""
-        return super(GestorFazendaViewSet, self).destroy(
-            request, *args, **kwargs)
-
-
+    
 class GadoFilter(filters.FilterSet):
 
     fazenda = filters.RelatedFilter(
@@ -143,12 +89,11 @@ class GadoFilter(filters.FilterSet):
         fields = {
             'id': '__all__',
             'numero_brinco': '__all__',
-            'peso': '__all__',
             'especificacoes': '__all__',
         }
 
 
-class GadoViewSet(viewsets.ModelViewSet):
+class GadoViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Gado.objects.all()
     serializer_class = GadoSerializer
     filter_class = GadoFilter
@@ -162,29 +107,25 @@ class GadoViewSet(viewsets.ModelViewSet):
         'especificacoes',
     )
 
-    def list(self, request, *args, **kwargs):
-        """Retorna todas os(as) Gado"""
-        self.serializer_class = GadoSerializer
-        return super(GadoViewSet, self).list(request, *args, **kwargs)
 
-    def create(self, request, *args, **kwargs):
-        """Cadastro de novo(a) Gado"""
-        return super(GadoViewSet, self).create(request, *args, **kwargs)
+class PesagemFilter(filters.FilterSet):
 
-    def retrieve(self, request, *args, **kwargs):
-        """Retorna um(a) Gado pelo id"""
-        self.serializer_class = GadoSerializer
-        return super(GadoViewSet, self).retrieve(request, *args, **kwargs)
+    gado = filters.RelatedFilter(
+        GadoFilter, name='gado', queryset=Gado.objects.all())
 
-    def update(self, request, *args, **kwargs):
-        """Atualiza um(a) Gado pelo id"""
-        return super(GadoViewSet, self).update(request, *args, **kwargs)
+    class Meta:
+        model = Pesagem
+        fields = {
+            'id': '__all__',
+            'peso': '__all__',
+            'data_pesagem': '__all__',
+        }
 
-    def partial_update(self, request, *args, **kwargs):
-        """Atualiza alguns campos de um(a) Gado pelo id"""
-        return super(GadoViewSet, self).partial_update(request, *args,
-                                                       **kwargs)
 
-    def destroy(self, request, *args, **kwargs):
-        """Apaga um(a) Gado pelo id"""
-        return super(GadoViewSet, self).destroy(request, *args, **kwargs)
+class PesagemViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Pesagem.objects.all()
+    serializer_class = PesagemSerializer
+    filter_class = PesagemFilter
+    filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
+    ordering_fields = ('data_pesagem', )
+    search_fields = ('data_pesagem', )

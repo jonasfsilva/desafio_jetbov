@@ -1,14 +1,15 @@
 """
-    Modificado em 19/01/2018 23:04:21
+    Modificado em 20/01/2018 20:45:43
 """
 from rest_framework import serializers
 from expander import ExpanderSerializerMixin
 from fazenda.serializers import FazendaSerializer
 from fazenda.serializers import GestorFazendaSerializer
 from fazenda.serializers import GadoSerializer
+from fazenda.serializers import PesagemSerializer
 from fazenda.serializers import GadoSerializer
 from fazenda.serializers import GestorFazendaSerializer
-
+from fazenda.serializers import PesagemSerializer
 from jetbov.serializers_user import UserSerializer
 
 FazendaSerializer.Meta.expandable_fields = {
@@ -27,4 +28,11 @@ GestorFazendaSerializer.Meta.expandable_fields = {
 
 GadoSerializer.Meta.expandable_fields = {
     'fazenda': FazendaSerializer,
+    'pesagem_set': (PesagemSerializer, (), {
+        'many': True
+    }),
+}
+
+PesagemSerializer.Meta.expandable_fields = {
+    'gado': GadoSerializer,
 }

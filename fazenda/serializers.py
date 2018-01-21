@@ -1,18 +1,23 @@
+"""
+    Modificado em 20/01/2018 20:45:18
+"""
 import os
-from rest_framework import serializers      
+from rest_framework import serializers
+from expander import ExpanderSerializerMixin
 from fazenda.models import Fazenda
 from fazenda.models import GestorFazenda
 from fazenda.models import Gado
-from expander import ExpanderSerializerMixin
+from fazenda.models import Pesagem
 
-class FazendaSerializer(ExpanderSerializerMixin, serializers.ModelSerializer):
 
+class FazendaSerializer(ExpanderSerializerMixin,
+                        serializers.ModelSerializer):
+    
     __str__ = serializers.SerializerMethodField()
 
     class Meta:
         model = Fazenda
         fields = (
-            
             '__str__',
             'id',
             'nome',
@@ -28,14 +33,14 @@ class FazendaSerializer(ExpanderSerializerMixin, serializers.ModelSerializer):
         return obj.__str__()
 
 
-class GestorFazendaSerializer(ExpanderSerializerMixin, serializers.ModelSerializer):
+class GestorFazendaSerializer(ExpanderSerializerMixin,
+                              serializers.ModelSerializer):
     
     __str__ = serializers.SerializerMethodField()
 
     class Meta:
         model = GestorFazenda
         fields = (
-            
             '__str__',
             'id',
             'usuario',
@@ -54,23 +59,45 @@ class GestorFazendaSerializer(ExpanderSerializerMixin, serializers.ModelSerializ
         return obj.__str__()
 
 
-class GadoSerializer(ExpanderSerializerMixin, serializers.ModelSerializer):
-
+class GadoSerializer(ExpanderSerializerMixin,
+                     serializers.ModelSerializer):
+    
     __str__ = serializers.SerializerMethodField()
 
     class Meta:
         model = Gado
-        fields = (            
+        fields = (
             '__str__',
             'id',
             'numero_brinco',
-            'peso',
             'especificacoes',
             'fazenda',
         )
 
     def __init__(self, *args, **kwargs):
         super(GadoSerializer, self).__init__(*args, **kwargs)
+
+    def get___str__(self, obj):
+        return obj.__str__()
+
+
+class PesagemSerializer(ExpanderSerializerMixin,
+                        serializers.ModelSerializer):
+    
+    __str__ = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Pesagem
+        fields = (
+            '__str__',
+            'id',
+            'peso',
+            'data_pesagem',
+            'gado',
+        )
+
+    def __init__(self, *args, **kwargs):
+        super(PesagemSerializer, self).__init__(*args, **kwargs)
 
     def get___str__(self, obj):
         return obj.__str__()

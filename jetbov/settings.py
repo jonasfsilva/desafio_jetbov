@@ -38,11 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'jetbov',
-    'fazenda',
     'rest_framework',
     'django_filters',
-    'generate_api',
     'rest_framework_swagger',
+    'fazenda',
 ]
 
 PROJECT_DIR = os.path.abspath(os.path.dirname(__file__))
@@ -125,6 +124,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
+GROUPS = 'GESTORES_FAZENDAS'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
