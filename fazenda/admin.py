@@ -1,10 +1,12 @@
 from django.contrib import admin
+from django.contrib.auth.models import Group
 from fazenda.models import Fazenda
 from fazenda.models import GestorFazenda
 from fazenda.models import Gado
 from fazenda.models import Pesagem
 from django.conf import settings
 
+admin.site.unregister(Group)
 
 @admin.register(Fazenda)
 class FazendaAdmin(admin.ModelAdmin):

@@ -57,6 +57,9 @@ class Gado(models.Model):
 
 class Pesagem(models.Model):
     
+    class Meta:
+        verbose_name_plural = "Pesagens"
+    
     peso = models.FloatField()
     gado = models.ForeignKey(Gado)
     data_pesagem = models.DateField()

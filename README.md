@@ -22,6 +22,8 @@ python manage.py migrate (aplicando migrates)
 
 python manage.py set_permissions (Setando permissoes e criando grupo de gestores de fazenda)
 
+python manage.py collectstatic (Coletar staticos)
+
 cd app_front_end (entrar na pasta onde esta o front_end da aplicacao)
 
 npm install bower.json (instalar dependencias do front_end)
