@@ -17,7 +17,7 @@ define('port', type=int, default=port)
 
 TEMPLATE_PATH = os.path.join(settings.BASE_DIR, 'templates')
 APP_FOLDER = os.path.dirname(settings.BASE_DIR)
-APP_FRONT = os.path.join(APP_FOLDER, 'jetbov', 'app_front_end')
+APP_FRONT = os.path.join(APP_FOLDER, 'desafio_jetbov', 'app_front_end')
 # print9()
 print("APP_FRONT: ", APP_FRONT)
 STATIC_PATH = settings.STATIC_ROOT

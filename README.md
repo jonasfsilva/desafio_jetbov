@@ -8,7 +8,7 @@ Sistema para gestão de fazendas e cabeças de gado
 
 2. Passos:
 ```
-git clone https://github.com/jonasfsilva/desafio_jetbov.git jetbov (Clonando Aplicação)
+git clone https://github.com/jonasfsilva/desafio_jetbov.git (Clonando Aplicação)
 
 virtualenv -p python3 venv  (Criar virtual env)
 
