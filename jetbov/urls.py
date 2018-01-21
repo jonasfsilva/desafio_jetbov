@@ -14,12 +14,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
+from django.contrib import admin
 from django.conf.urls import include
 from django.contrib import admin
 from jetbov.routers import router
 from rest_framework_swagger.views import get_swagger_view
 
 schema_view = get_swagger_view(title='FoiTop API')
+admin.site.site_header = 'JetBov'
 
 
 urlpatterns = [

@@ -47,7 +47,7 @@ class GestorFazenda(models.Model):
 
 class Gado(models.Model):
     
-    numero_brinco = models.CharField(max_length=50)
+    numero_brinco = models.CharField(max_length=50, verbose_name="Numero do Brinco")
     especificacoes = models.TextField(null=True, blank=True)
     fazenda = models.ForeignKey(Fazenda)
 

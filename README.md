@@ -8,31 +8,33 @@ Sistema para gestão de fazendas e cabeças de gado
 
 2. Passos:
 ```
-git clone https://github.com/jonasfsilva/desafio_jetbov.git (Clonando Aplicação)
+1. git clone https://github.com/jonasfsilva/desafio_jetbov.git (Clonando Aplicação)
 
-virtualenv -p python3 venv  (Criar virtual env)
+2. virtualenv -p python3 venv  (Criar virtual env)
 
-source venv/bin/activate (Ativar virtualenv)
+3. source venv/bin/activate (Ativar virtualenv)
 
-cd <pasta do projeto> 
+4. cd <pasta do projeto> 
 
-pip install -r requirements (Instalando dependencias do python)
+5. pip install -r requirements (Instalando dependencias do python)
 
-python manage.py migrate (aplicando migrates)
+6. python manage.py migrate (aplicando migrates)
 
-python manage.py set_permissions (Setando permissoes e criando grupo de gestores de fazenda)
+7. python manage.py set_permissions (Setando permissoes e criando grupo de gestores de fazenda)
 
-python manage.py collectstatic (Coletar staticos)
+8. python manage.py collectstatic (Coletar staticos)
 
-cd app_front_end (entrar na pasta onde esta o front_end da aplicacao)
+9. cd app_front_end (entrar na pasta onde esta o front_end da aplicacao)
 
-npm install bower.json (instalar dependencias do front_end)
+10. npm install bower.json (instalar dependencias do front_end)
 
-python manage.py createsuperuser (crie um super usuario para cadastrar inicialmente os gestores e fazendas)
+11. python manage.py createsuperuser (crie um super usuario para cadastrar inicialmente os gestores e fazendas)
 
-python manage.py run_tornado_server (Roda a aplicacao)
+12. python manage.py run_tornado_server (Roda a aplicacao)
 
-localhost:8801 (accessar aplicacao no browser)
+13. python manage.py test (Executa tests unitarios)
+
+14. localhost:8801 (accessar aplicacao no browser)
 ```
 
 3. Detalhes da API:
@@ -41,20 +43,37 @@ localhost:8801 (accessar aplicacao no browser)
 - /api/ (Url para acessar a api e suas urls)
 - /api/docs (Url para acessar a documentacao da api, feita com o swagger e ver todas as filtragens possiveis)
 - /api/pensagens/?gado__fazenda__cnpj=0000000 (É possivel filtrar relacionamentos na api)
+- /api/pensagens/?expand=gado (Exibe os dados do gado que esta relacionado com a pesagem)
 ```
 
 4. Detalhes do Admin:
 ```
-- É possivel criar gestores e vincula-los a uma fazenda
-- Quando este gestor fizer login ele podera listar apenas suas fazendas, e pensagens relacionadas a ela
+    - É possivel criar gestores e vincula-los a uma fazenda
+    - Quando este gestor fizer login ele podera listar apenas suas fazendas, e pensagens relacionadas a ela
 
 ```
 
 5. Melhorias possiveis:
 ```
-- python manage.py test (Executa testes unitarios)
-- Criacao de mais testes unitarios
-- Melhorias nas qustoes de permissoes de accessos e regra de negocio
-- Layout mas otimizado
+    - Criacao de mais testes unitarios para toda api
+    - Melhorias nas qustoes de permissoes de accessos e regras de negocio
+    - Layout mas otimizado
+    - Criacao de comando unica para executar todo deploy
+    - Filtragens listagens e permissoes admin
 
+```
+
+6. Tecnologias Utilizadas:
+```
+    - Django filter : Para fazer filtragens avançadas como na ORM
+    
+    - Django rest expander : Para mostrar dados de relacionamentos apenas quando
+    desejado passando o paramentro expand="<nome do relacionamento>"
+
+    - Django rest swagger : Para documentar todos os metodos e filtragens da API
+
+    - AngularJS | AngularResource para consumir API
+
+    - NodeJS "npm" para instalar bibliotecas Javascript
+    
 ```

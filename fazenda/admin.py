@@ -13,6 +13,8 @@ class FazendaAdmin(admin.ModelAdmin):
     
     readonly_fields = ('access_token',)
 
+    list_display = ('nome', 'cnpj', 'endereco', 'access_token')
+
     def get_queryset(self, request):
         qs = super(FazendaAdmin, self).get_queryset(request)
         if request.user.is_superuser:
@@ -34,6 +36,8 @@ class FazendaAdmin(admin.ModelAdmin):
 @admin.register(GestorFazenda)
 class GestorFazendaAdmin(admin.ModelAdmin):
     
+    list_display = ('usuario', 'fazenda',)
+    
     def has_add_permission(self, request):
         return request.user.is_superuser
 
@@ -49,7 +53,8 @@ class GadoAdmin(admin.ModelAdmin):
     """
         Usuario Gestor vê apenas Gado da fazenda que ele é gestor
     """
-    
+    list_display = ('numero_brinco', 'especificacoes',)
+
     def get_queryset(self, request):
         qs = super(GadoAdmin, self).get_queryset(request)
         if request.user.is_superuser:
@@ -77,6 +82,8 @@ class PesagemAdmin(admin.ModelAdmin):
         Usuario Gestor vê apenas Pesagens de gado da fazenda que ele é gestor
     """
     
+    list_display = ('gado', 'peso', 'data_pesagem',)
+
     def get_queryset(self, request):
         qs = super(PesagemAdmin, self).get_queryset(request)
         if request.user.is_superuser:
