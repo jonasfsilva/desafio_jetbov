@@ -75,5 +75,7 @@ Sistema para gestão de fazendas e cabeças de gado
     - AngularJS | AngularResource para consumir API
 
     - NodeJS "npm" para instalar bibliotecas Javascript
+
+    - Git Flow para gerenciamento de codigo com git (develop e features e releases)
     
 ```
