@@ -18,27 +18,29 @@
         <div class="card text-center">
             <br>
             <div class="card-block">
-                <h4 class="card-title">Pesquise pesagens por CNPJ</h4>
-                <p class="card-text">Informe o cnpj da fazenda que deseja pesquisar as pesagens.</p>
-                <input type="text" name="fazenda_cnpj" ng-model="jetbovCtrl.fazenda_cnpj"></input><br>
-                <button ng-click="jetbovCtrl.pesquisar_por_cnpj(jetbovCtrl.fazenda_cnpj)">Pesquisar</button>
-                <br>
+                <form>
+                    <h4 class="card-title">Pesquise pesagens por CNPJ</h4>
+                    <p class="card-text">Informe o cnpj da fazenda que deseja pesquisar as pesagens.</p>
+                    <input id="fazenda_cnpj" type="text" name="fazenda_cnpj" ng-model="jetbovCtrl.fazenda_cnpj" ng-keyup="jetbovCtrl.pesquisar_por_cnpj()"><br>
+                    <button ng-click="jetbovCtrl.pesquisar_por_cnpj(jetbovCtrl.fazenda_cnpj)">Pesquisar</button>
+                    <br>
+                </form>
             </div>
             <br>
             <div id="pesagens_token" class="card-block">
                 <h4 class="card-title">Pesquise pesagens por Token</h4>
                 <p class="card-text">Informe o token da fazenda que deseja pesquisar as pesagens.</p>
                 <span>Brinco do Gado</span><br>
-                <input type="text" name="numero_brinco" ng-model="jetbovCtrl.numero_brinco"></input><br>
+                <input type="text" name="numero_brinco" ng-model="jetbovCtrl.numero_brinco"><br>
                 <span>Token</span><br>
-                <input type="text" name="token" ng-model="jetbovCtrl.token"></input><br>
+                <input type="text" name="token" ng-model="jetbovCtrl.token"><br>
                 <button ng-click="jetbovCtrl.pesquisar_por_token(jetbovCtrl.numero_brinco, jetbovCtrl.token)">Pesquisar</button>
                 <br>
                 <br>
             </div>
         </div>
 
-        <table class="table table-striped" ng-if="jetbovCtrl.pesagens.length">
+        <table class="table table-striped" ng-if="jetbovCtrl.show_list">
                 <thead>
                     <tr>
                         <th scope="col">Brinco</th>
@@ -48,15 +50,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="pesagem in jetbovCtrl.pesagens">
+                    <tr ng-repeat="pesagem in pesagens">
                         <th scope="row">{{pesagem.gado.numero_brinco}}</th>
                         <td>{{pesagem.peso}}</td>
                         <td>{{pesagem.especificacoes}}</td>
                         <td>{{pesagem.data_sepagem}}</td>
                     </tr>
                 </tbody>
-        </table>
-            
+        </table>     
         <!-- <data ui-view ng-controller="jetbovController as jetbovCtrl"></data> -->
 
         <!-- Core Modules -->

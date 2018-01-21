@@ -1,5 +1,4 @@
 from django.apps import AppConfig
-from django.db.models.signals import post_migrate
 from subprocess import call
 from django.core.management import BaseCommand, call_command
 from django.contrib.auth.models import Group
@@ -19,6 +18,7 @@ class FazendaConfig(AppConfig):
     verbose_name = 'Fazenda JetBov'
 
     def ready(self):
+        from django.db.models.signals import post_migrate
         print('Criando Grupo')
         post_migrate.connect(get_or_create_gestores_group, sender=self)
         post_migrate.connect(set_permissions, sender=self)

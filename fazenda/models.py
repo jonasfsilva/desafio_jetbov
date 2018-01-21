@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
+from django.conf import settings
+from django.contrib.auth.models import Group
 import secrets
 
 
@@ -17,7 +19,12 @@ class Fazenda(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.pk:
+            # Token é criado junto com a fazenda
             self.access_token = secrets.token_hex(32)
+        else:
+            # Token nao pode ser alterado
+            self.access_token = self.__class__.objects.get(
+                pk=self.pk).access_token
         super(Fazenda, self).save(*args, **kwargs)
 
 
@@ -31,6 +38,10 @@ class GestorFazenda(models.Model):
     
     def save(self, *args, **kwargs):
         self.usuario.is_staff = True
+        group = Group.objects.get(name=settings.GROUPS)
+        if not group:
+            group = Group.objects.create(name=settings.GROUPS)
+        self.usuario.groups.add(group.pk)
         self.usuario.save()
         super(GestorFazenda, self).save(*args, **kwargs)
 

@@ -16,12 +16,16 @@ class Command(BaseCommand):
     
     
     def handle(self, *args, **options):
+        try:
+            group = Group.objects.get(name=settings.GROUPS)
+        except:
+            group = Group.objects.create(name=settings.GROUPS)
         self.make_permissions()
         
     def set_permission(self, groups, permissions):
         for group in groups:
             db_group = Group.objects.get(name=group)
-            # print('-->Group{0}: --> Permissions{1}'.format(groups, permissions) )
+            print('-->Group{0}: --> Permissions{1}'.format(groups, permissions) )
             for permission in permissions:
                 if isinstance(permission, QuerySet):
                     permission = permission.first()
@@ -49,13 +53,13 @@ class Command(BaseCommand):
             'ModelPermissions', 'model_name groups permissions')
 
         # Gestores Grupos
-        groups = settings.GROUPS
+        groups = [settings.GROUPS]
 
         models_with_permissions = [
             
             ModelPermissions('fazenda', groups, ['add', 'change']),
-            ModelPermissions('gado', all_groups, ['all']),
-            ModelPermissions('pesagem', all_groups, ['all']),
+            ModelPermissions('gado', groups, ['all']),
+            ModelPermissions('pesagem', groups, ['all']),
 
         ]
 
