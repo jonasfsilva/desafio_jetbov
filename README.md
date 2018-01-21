@@ -31,19 +31,19 @@ python manage.py createsueruser (crie um super usuario para cadastrar inicialmen
 python manage.py run_tornado_server (Roda a aplicacao)
 
 localhost:8801 (accessar aplicacao no browser)
-'''
+```
 
 3. Detalhes da API:
 
-'''
+```
 - /api/ (Url para acessar a api e suas urls)
 - /api/docs (Url para acessar a documentacao da api, feita com o swagger e ver todas as filtragens possiveis)
 - /api/pensagens/?gado__fazenda__cnpj=0000000 (É possivel filtrar relacionamentos na api)
-'''
+```
 
 4. Detalhes do Admin:
-'''
+```
 - É possivel criar gestores e vincula-los a uma fazenda
 - Quando este gestor fizer login ele podera listar apenas suas, fazendas, e pensagens relacionadas a ela
 
-'''
+```
