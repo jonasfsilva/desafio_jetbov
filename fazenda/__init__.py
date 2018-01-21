@@ -1,0 +1,1 @@
+# default_app_config = 'fazenda.apps.FazendaConfig'

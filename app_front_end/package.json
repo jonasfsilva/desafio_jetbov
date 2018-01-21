@@ -1,0 +1,18 @@
+{
+  "name": "app_front_end",
+  "version": "1.0.0",
+  "description": "Desafio Jetbov",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "jonas",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.6.8",
+    "angular-resource": "^1.6.8",
+    "bootstrap": "^4.0.0",
+    "jquery": "^3.3.1",
+    "package.json": "^2.0.1"
+  }
+}
