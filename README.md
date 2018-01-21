@@ -26,7 +26,7 @@ cd app_front_end (entrar na pasta onde esta o front_end da aplicacao)
 
 npm install bower.json (instalar dependencias do front_end)
 
-python manage.py createsueruser (crie um super usuario para cadastrar inicialmente os gestores e fazendas)
+python manage.py createsuperuser (crie um super usuario para cadastrar inicialmente os gestores e fazendas)
 
 python manage.py run_tornado_server (Roda a aplicacao)
 
@@ -44,6 +44,15 @@ localhost:8801 (accessar aplicacao no browser)
 4. Detalhes do Admin:
 ```
 - É possivel criar gestores e vincula-los a uma fazenda
-- Quando este gestor fizer login ele podera listar apenas suas, fazendas, e pensagens relacionadas a ela
+- Quando este gestor fizer login ele podera listar apenas suas fazendas, e pensagens relacionadas a ela
+
+```
+
+5. Melhorias possiveis:
+```
+- python manage.py test (Executa testes unitarios)
+- Criacao de mais testes unitarios
+- Melhorias nas qustoes de permissoes de accessos e regra de negocio
+- Layout mas otimizado
 
 ```
