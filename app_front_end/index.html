@@ -11,10 +11,9 @@
         <link href="node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
 
     </head>
-    <body ng-app="jetBov" ng-controller="jetbovController as jetbovCtrl">
+    <body ng-app="jetBov">
 
-        <h1>JetBov</h1>
-        
+    <div ng-controller="jetbovController as jetbovCtrl">
         <div class="card text-center">
             <br>
             <div class="card-block">
@@ -41,23 +40,24 @@
         </div>
 
         <table class="table table-striped" ng-if="jetbovCtrl.show_list">
-                <thead>
-                    <tr>
-                        <th scope="col">Brinco</th>
-                        <th scope="col">Peso</th>
-                        <th scope="col">Especificacos</th>
-                        <th scope="col">Data Pesagem</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="pesagem in pesagens">
-                        <th scope="row">{{pesagem.gado.numero_brinco}}</th>
-                        <td>{{pesagem.peso}}</td>
-                        <td>{{pesagem.especificacoes}}</td>
-                        <td>{{pesagem.data_sepagem}}</td>
-                    </tr>
-                </tbody>
+            <thead>
+                <tr>
+                    <th scope="col">Brinco</th>
+                    <th scope="col">Peso</th>
+                    <th scope="col">Especificacos</th>
+                    <th scope="col">Data Pesagem</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="pesagem in pesagens">
+                    <th scope="row">{{pesagem.gado.numero_brinco}}</th>
+                    <td>{{pesagem.peso}}</td>
+                    <td>{{pesagem.especificacoes}}</td>
+                    <td>{{pesagem.data_sepagem}}</td>
+                </tr>
+            </tbody>
         </table>     
+    </div>
         <!-- <data ui-view ng-controller="jetbovController as jetbovCtrl"></data> -->
 
         <!-- Core Modules -->
