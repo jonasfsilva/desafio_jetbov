@@ -12,7 +12,7 @@ djangorestframework==3.5.1
 djangorestframework-expander==0.2.3
 djangorestframework-filters==0.10.2
 idna==2.6
-ipython==6.2.1
+ipython==7.16.3
 ipython-genutils==0.2.0
 itypes==1.1.0
 jedi==0.11.1
